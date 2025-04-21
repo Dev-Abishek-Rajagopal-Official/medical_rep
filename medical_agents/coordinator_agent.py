@@ -1,28 +1,34 @@
-import io
 import os
 import re
+import json
 from dotenv import load_dotenv
-from typing import Iterator
-from contextlib import redirect_stdout
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
-from agno.team.team import Team, RunResponse
-from .google_agent import google_agent
-from .wikipedia_agent import wiki_agent
 from .clinical_trial_analysis_agent import clinical_trial_agent_stream
 from .drug_discovery_agent import drug_discovery_agent_stream
 from .drug_interaction_agent import drug_interaction_agent_stream
-import json
+
 # Load environment variables
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-all_tools = set()
 
 
 async def coordinator_agent_definition(search_str: str, stream: bool = True) -> dict:
     """
-    Determines the appropriate specialized agent to handle the query based on the user's search string.
-    Returns JSON-formatted output as a Python dictionary.
+    Determines the appropriate specialized agent to handle the user's query based on the search string.
+
+    This function communicates with the OpenAI API to analyze the search string and selects the most appropriate 
+    agent based on predefined agent types. The function streams results from the selected agent.
+
+    Args:
+        search_str (str): The user's search query that needs to be processed.
+        stream (bool, optional): Whether to stream the response. Default is True.
+
+    Yields:
+        tuple: A tuple containing key-value pairs streamed from the selected agent.
+
+    Raises:
+        ValueError: If no valid JSON object is found in the response from the agent.
     """
     json_agent = Agent(
         model=OpenAIChat(id="gpt-4o"),
@@ -72,6 +78,7 @@ async def coordinator_agent_definition(search_str: str, stream: bool = True) -> 
         print("Failed to parse agent response. Defaulting to Drug Discovery. Error:", e)
         agent = 1  # Default agent
 
+    # Stream the response from the selected agent
     if agent == 2:
         async for key, value in clinical_trial_agent_stream(search_str):
             yield key, value
@@ -81,23 +88,3 @@ async def coordinator_agent_definition(search_str: str, stream: bool = True) -> 
     elif agent == 3:
         async for key, value in drug_interaction_agent_stream(search_str):
             yield key, value
-
-
-
-    # return json.loads(json_string)
-
-
-# search_str="Show metabolic pathway for vitamin K with warfarin"
-# search_str="Drug Molecular analysis of tylenol"
-# search_str="Clinical Trial analysis of tylenol"
-# agent_dict = coordinator_agent_definition(search_str=search_str)
-# print(agent_dict["agent"])
-# agent = int(agent_dict["agent"])
-# if agent == 2:
-#     clinical_trial_agent(search_str=search_str)
-# elif agent == 1:
-#     drug_discovery_agent(search_str=search_str)
-# elif agent == 3:
-#     drug_interaction_agent(search_str=search_str)
-# else:
-#     print("Information requested cannot be process in this platform")
