@@ -1,6 +1,3 @@
-Here’s a **basic `README.md`** for your project based on the folder structure, backend/frontend architecture, websocket, APIs, and agents you've described:
-
----
 
 # 🧠 Medical Agentic Research Assistant
 
