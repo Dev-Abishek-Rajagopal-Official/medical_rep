@@ -23,6 +23,9 @@ function App() {
   const [toolsUsed, setToolsUsed] = useState([]);
   const [isLoadingResponse, setIsLoadingResponse] = useState(false);
 
+  /**
+   * Initializes WebSocket and fetches conversation list when user logs in.
+   */
   useEffect(() => {
     if (isLoggedIn) {
       socketRef.current = new WebSocket('ws://localhost:8000/ws/agent/');
@@ -51,6 +54,9 @@ function App() {
     }
   }, [isLoggedIn]);
 
+  /**
+   * Fetches all conversations from the server and updates the state.
+   */
   const fetchConversationsList = async () => {
     setIsLoadingConversations(true);
     const data = await fetchConversations();
@@ -58,6 +64,10 @@ function App() {
     setIsLoadingConversations(false);
   };
 
+  /**
+   * Handles click on a previous query to load its conversation data.
+   * @param {string} id - ID of the previous conversation to fetch.
+   */
   const handlePreviousQueryClick = async (id) => {
     const data = await fetchConversationById(id);
     setInputValue(data.query);
@@ -67,6 +77,9 @@ function App() {
     setToolsUsed(data.tools_used);
   };
 
+  /**
+   * Sends search input to the WebSocket and resets relevant states.
+   */
   const handleSearch = async () => {
     setStreamedContent('');
     setJsonData(null);
@@ -78,6 +91,9 @@ function App() {
     socketRef.current.send(JSON.stringify(payload));
   };
 
+  /**
+   * Handles login validation.
+   */
   const handleLogin = () => {
     if (userId === 'user' && password === 'password') {
       setIsLoggedIn(true);
