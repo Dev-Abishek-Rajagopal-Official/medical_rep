@@ -1,5 +1,13 @@
 import React from 'react';
 
+/**
+ * Displays a list of tools that were used in the current process.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {Array<string>} props.toolsUsed - List of tools that were used.
+ * @returns {JSX.Element} A list of tools used, displayed only if the list is not empty.
+ */
 const ToolsUsed = ({ toolsUsed }) => (
   <>
     {toolsUsed.length > 0 && (
