@@ -2,6 +2,17 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { TbWorldSearch } from "react-icons/tb";
 
+/**
+ * Component for rendering the search input area and search button.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {string} props.inputValue - Current value of the search input
+ * @param {Function} props.setInputValue - Function to update the input value
+ * @param {Function} props.handleSearch - Callback to trigger the search operation
+ * @param {boolean} props.isLoadingResponse - Indicates if a search response is currently being fetched
+ * @returns {JSX.Element} Rendered SearchBar component
+ */
 const SearchBar = ({ inputValue, setInputValue, handleSearch, isLoadingResponse }) => (
   <div>
     <h5>AI-Medi Search <TbWorldSearch /></h5>
