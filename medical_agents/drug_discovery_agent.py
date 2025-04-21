@@ -1,9 +1,22 @@
-# drug_discovery_agent.py
-
 from .team_agent import agent_definition  # This is our streaming generator
 
-async def drug_discovery_agent_stream(search_str):
-    # Pass the search_str and other relevant data to the generator
+async def drug_discovery_agent_stream(search_str: str):
+    """
+    Streams the response from the Drug Discovery Agent based on the user's search query.
+
+    This function communicates with the agent definition to process the search string 
+    related to drug discovery, including aspects like molecular structure analysis, 
+    target identification, drug-target interaction prediction, and visual representations.
+
+    The agent is instructed to return relevant visualizations such as graphs, charts, and molecular structures 
+    when available. The agent will also embed molecular structures directly using markdown for images.
+
+    Args:
+        search_str (str): The search query provided by the user regarding drug discovery.
+
+    Yields:
+        str: The streaming response from the Drug Discovery Agent.
+    """
     async for chunk in agent_definition(
         name="Drug Discovery Agent",
         instructions=[
