@@ -1,0 +1,23 @@
+/* Ensure html, body, and root take full height */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container that fills the entire viewport */
+.fullscreen-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Optional: if you want the inner Card to also stretch */
+.full-window {
+  height: 100%;
+  width: 100%;
+}
+
+.field-border{
+  border-color: black !important;
+}
