@@ -1,7 +1,15 @@
 
+
+
 # 🧠 Medical Agentic Research Assistant
 
 This project is an interactive **AI-powered medical and pharmaceutical assistant** powered by specialized agents that analyze clinical trials, drug interactions, and drug discovery data. The system leverages **Django, Django Channels, DRF**, and **React + Vite**, supporting real-time streaming output using WebSockets.
+
+---
+
+## :movie_camera: Product Demo
+
+https://github.com/Dev-Abishek-Rajagopal-Official/medical_rep/blob/main/Medi-GPT%20Demo.mp4
 
 ---
 
