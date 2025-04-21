@@ -43,6 +43,16 @@ https://github.com/Dev-Abishek-Rajagopal-Official/medical_rep/blob/main/Medi-GPT
     ├── views.py
     └── asgi.py                  # ASGI entry point (for Daphne)
 ```
+
+---
+
+## 👤🔑 User Credentials 
+
+| Label       | Value                                  |
+|------------|----------------------------------------|
+| User     | user |
+| Password    | password                         |
+
 ---
 
 ## :books: Database
