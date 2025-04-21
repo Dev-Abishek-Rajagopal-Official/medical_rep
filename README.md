@@ -38,6 +38,11 @@ This project is an interactive **AI-powered medical and pharmaceutical assistant
     ├── views.py
     └── asgi.py                  # ASGI entry point (for Daphne)
 ```
+---
+
+## :books: Database
+- Used MongoDB docker as Database
+- [MongoDB-Docker](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-community-with-docker/)
 
 ---
 
@@ -70,6 +75,16 @@ cd medical_front
 npm install
 npm run dev
 ```
+---
+
+## :anchor: ENV file Content
+
+| Key       | Value                                  |
+|------------|----------------------------------------|
+| OPENAI_API_KEY     | sk-proj-<openAIKey...> |
+| MONGODB_URI    | mongodb://localhost:27017                         |
+| MONGO_DB_NAME   | vedtechbio |
+| MONGO_COLLECTION_NAME   | medicalconvo |
 
 ---
 
@@ -153,6 +168,7 @@ GET http://localhost:8000/conversations/:id
 |------------|----------------------------------------|
 | Backend     | Django, Django REST Framework, Channels |
 | Frontend    | React.js, Vite                         |
+| Charts      | [Highcharts](https://www.highcharts.com/) |                         |
 | Real-time   | WebSockets (via Django Channels + Daphne) |
 | Agents      | Custom LLM agents using Agno Framework |
 | Deployment  | Daphne server (port 8000), Vite (port 5173) |
