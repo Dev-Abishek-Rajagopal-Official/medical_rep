@@ -1,13 +1,14 @@
 import os
 from dotenv import load_dotenv
-from agno.agent import Agent, RunResponse
+from agno.agent import Agent
 from agno.tools.googlesearch import GoogleSearchTools
 from agno.models.openai import OpenAIChat
 
+# Load environment variables
 load_dotenv()
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
-
+# Initialize the Google Search Agent with necessary configurations
 google_agent = Agent(
     name="Google-Agent",
     role="Search Google for information",
@@ -19,18 +20,8 @@ google_agent = Agent(
     description="You are a Pharma Research Agentic AI Assistant",
 )
 
-markdown_file_content = None  # Initialize the variable
-tools_used = []  # Initialize the list for tools
+# Variables to store content and tools used
+markdown_file_content = None  # Initialize to store the markdown content
+tools_used = []  # Initialize the list to store tools used during agent execution
 
-# if response and response.content:
-#     markdown_file_content = response.content
-#     print("Markdown content stored in the 'markdown_file_content' variable.",markdown_file_content)
-# else:
-#     print("No response content received.")
-
-# if response and response.tools:
-#     for tool in response.tools:
-#         tools_used.append(tool.get('tool_name'))  # Assuming 'tool_name' is the key
-#     print("List of tools used stored in the 'tools_used' variable:", tools_used)
-# else:
-#     print("No tools were used in this response.")
+# You can now use the google_agent to perform the required tasks or handle responses
